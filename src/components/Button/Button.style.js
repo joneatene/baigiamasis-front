@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const Button = styled.button`
   border: none;
   border-radius: 25px;
-  background: rgb(207, 208, 210);
+  background: ${(props) =>
+    props.color === "primary" ? "rgb(40,48,64)" : "rgb(176,181,191)"};
   color: white;
   padding: 1rem 2rem;
   text-transform: uppercase;

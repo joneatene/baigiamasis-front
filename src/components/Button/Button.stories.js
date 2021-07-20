@@ -6,4 +6,4 @@ export default {
   title: "Components/Button",
 };
 
-export const ButtonStory = () => <Button>Hello this is button</Button>;
+export const ButtonStory = () => <Button color="secondary">Hello this is button</Button>;
