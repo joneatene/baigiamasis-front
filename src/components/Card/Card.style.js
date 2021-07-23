@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const CardBlock = styled.div`
-  width: 30rem;
   box-sizing: border-box;
   padding: 1rem;
   margin-bottom: 2rem;
