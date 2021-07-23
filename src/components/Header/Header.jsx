@@ -6,6 +6,7 @@ const Header = () => (
     <S.NavBlock>
       <S.NavLink to="/">Register</S.NavLink>
       <S.NavLink to="/login">Login</S.NavLink>
+      <S.NavLink to="/profile">Profile</S.NavLink>
     </S.NavBlock>
   </header>
 );

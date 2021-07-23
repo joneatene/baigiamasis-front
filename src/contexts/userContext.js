@@ -3,11 +3,11 @@ import React, { createContext, useState } from "react";
 export const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState();
 
   useState(() => {
     setUser({
-      name: "Jone",
+      fullname: "Jone",
       photo:
         "https://images.pexels.com/photos/2552130/pexels-photo-2552130.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
       about: "Hi, I'm a Front-End student at CodeAcademy",
