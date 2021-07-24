@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import * as S from "./Card.style";
 
 const Card = ({ fullname, photo, post, timestamp }) => (
@@ -13,5 +14,12 @@ const Card = ({ fullname, photo, post, timestamp }) => (
     {post}
   </S.CardBlock>
 );
+
+Card.propTypes = {
+  fullname: PropTypes.string().max(255),
+  photo: PropTypes.string(),
+  post: PropTypes.string().max(255),
+  timestamp: PropTypes.string(),
+};
 
 export default Card;

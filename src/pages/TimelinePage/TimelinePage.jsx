@@ -19,13 +19,19 @@ const TimelinePage = () => {
           <form>
             <S.Input
               name="post"
+              minLength="2"
               maxLength="255"
               placeholder={`What's on your mind ${
                 user.fullname.split(" ")[0]
               }?`}
               required
             />
-            <Button>Post</Button>
+            <Button
+              type="submit"
+              color="primary"
+            >
+              Post
+            </Button>
           </form>
         </S.UserForm>
       </div>

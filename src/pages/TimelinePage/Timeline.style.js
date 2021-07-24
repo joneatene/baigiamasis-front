@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const UserForm = styled.section`
-  margin: 2rem auto;
+  margin: 1rem auto;
   width: 30rem;
   box-sizing: border-box;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -37,12 +37,14 @@ export const Input = styled.textarea`
   background: transparent;
   outline: none;
   resize: none;
+  height: 1rem;
   width: 100%;
   padding: 1rem 0.5rem;
   margin-bottom: 2rem;
-  transition: ease-in-out 0.2s;
+  transition: ease-in-out 0.4s;
 
   &:focus {
     background: rgb(247, 245, 237);
+    height: 5rem;
   }
 `;
