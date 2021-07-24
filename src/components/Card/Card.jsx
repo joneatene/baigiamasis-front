@@ -16,10 +16,10 @@ const Card = ({ fullname, photo, post, timestamp }) => (
 );
 
 Card.propTypes = {
-  fullname: PropTypes.string().max(255),
-  photo: PropTypes.string(),
-  post: PropTypes.string().max(255),
-  timestamp: PropTypes.string(),
+  fullname: PropTypes.string.isRequired,
+  photo: PropTypes.string.isRequired,
+  post: PropTypes.string.isRequired,
+  timestamp: PropTypes.string.isRequired,
 };
 
 export default Card;
