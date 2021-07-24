@@ -7,7 +7,7 @@ const UserProvider = ({ children }) => {
 
   useState(() => {
     setUser({
-      fullname: "Jone",
+      fullname: "Jone Kalmaite",
       photo:
         "https://images.pexels.com/photos/2552130/pexels-photo-2552130.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
       about: "Hi, I'm a Front-End student at CodeAcademy",
