@@ -17,6 +17,11 @@ const UserProvider = ({ children }) => {
           post: "Hello it is my first post",
           timestamp: "2021-05-06 20.10",
         },
+        {
+          id: 2,
+          post: "Hello it is my second post",
+          timestamp: "2021-05-06 20.10",
+        },
       ],
     });
   }, []);
