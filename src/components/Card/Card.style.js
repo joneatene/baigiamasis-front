@@ -11,23 +11,13 @@ export const CardBlock = styled.div`
 `;
 
 export const InfoBlock = styled.div`
-  display: flex;
-  align-items: top;
   margin-bottom: 1rem;
-`;
-
-export const CardImage = styled.img`
-  height: 3rem;
-  width: 3rem;
-  object-fit: cover;
-  border-radius: 50%;
-  margin-right: 1rem;
 `;
 
 export const Username = styled.h5`
   font-weight: 400;
-  text-transform: uppercase;
-  margin: 0.2rem 0;
+  margin: 0;
+  margin-bottom: 0.4rem;
 `;
 
 export const Timestamp = styled.p`
