@@ -83,7 +83,7 @@ const Form = ({ type }) => {
           requires
         />
         <Button type="submit" color="primary">
-          {type}
+          {type === "register" ? "register" : "log in"}
         </Button>
       </form>
     </div>
