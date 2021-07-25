@@ -1,47 +1,33 @@
 import React from "react";
 import PropTypes from "prop-types";
+import axios from "axios";
 import * as Yup from "yup";
 import * as S from "./Form.style";
 import Button from "../Button/Button";
 
 const Form = ({ type }) => {
+  //for registering user
   const fetchRegister = (fullname, email, password) => {
-    fetch("https://baigiamasis-back-hvu2q.ondigitalocean.app/auth/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ fullname, email, password }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (!data.error) {
-          alert("user registered");
-        } else {
-          console.log(data);
-          alert("Sorry, an error occured :( Please try again later");
-        }
-      });
+    axios
+      .post("https://baigiamasis-back-hvu2q.ondigitalocean.app/auth/register", {
+        fullname,
+        email,
+        password,
+      })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   };
-
+  //for logging in user
   const fetchLogin = (email, password) => {
-    fetch("https://baigiamasis-back-hvu2q.ondigitalocean.app/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (!data.error) {
-          alert("User logged in", data.token);
-        } else {
-          console.log(data);
-          alert("Sorry, an error occured :( Please try again later");
-        }
-      });
+    axios
+      .post("https://baigiamasis-back-hvu2q.ondigitalocean.app/auth/login", {
+        email,
+        password,
+      })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   };
+  //register and login form validation
   const validation = (e) => {
     e.preventDefault();
     const email = e.target.elements.email.value.trim();
@@ -55,11 +41,13 @@ const Form = ({ type }) => {
       });
 
       schema.isValid({ email, password }).then((data) => {
-        data
-          ? type === "register"
+        if (data) {
+          type === "register"
             ? fetchRegister(fullname, email, password)
-            : fetchLogin(email, password)
-          : alert("Bad email or password");
+            : fetchLogin(email, password);
+        } else {
+          alert("Bad email or password");
+        }
       });
     } else {
       alert("Please write in email and password");
