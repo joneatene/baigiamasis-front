@@ -5,10 +5,9 @@ import * as S from "./Card.style";
 const Card = ({ fullname, photo, post, timestamp }) => (
   <S.CardBlock>
     <S.InfoBlock>
-      <S.CardImage src={photo} />
       <div>
-        <S.Username>{fullname}</S.Username>
-        <S.Timestamp>{timestamp}</S.Timestamp>
+        <S.Username>Jone Atene Kalmaite</S.Username>
+        <S.Timestamp>2021-06-05 12.45</S.Timestamp>
       </div>
     </S.InfoBlock>
     {post}

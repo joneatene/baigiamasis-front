@@ -1,10 +1,15 @@
 import React, { useContext, useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { UserContext } from "../../contexts/userContext";
 import * as S from "./Profile.style";
 
 import Card from "../../components/Card/Card";
 
 const ProfilePage = () => {
+  const history = useHistory();
+  if (!localStorage.getItem("token")) {
+    history.push("/login");
+  }
   const [user, setUser] = useState();
   const userContext = useContext(UserContext);
 
