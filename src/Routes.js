@@ -7,16 +7,18 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import TimelinePage from "./pages/TimelinePage/TimelinePage";
 
-const Routes = () => (
-  <Router>
-    <Header />
-    <Switch>
-      <Route exact path="/" component={RegisterPage} />
-      <Route exact path="/login" component={LoginPage} />
-      <Route exact path="/timeline" component={TimelinePage} />
-      <Route exact path="/profile" component={ProfilePage} />
-    </Switch>
-  </Router>
-);
+const Routes = () => {
+  return (
+    <Router>
+      <Header />
+      <Switch>
+        <Route exact path="/" component={RegisterPage} />
+        <Route exact path="/login" component={LoginPage} />
+        <Route exact path="/timeline" component={TimelinePage} />
+        <Route exact path="/profile" component={ProfilePage} />
+      </Switch>
+    </Router>
+  );
+};
 
 export default Routes;

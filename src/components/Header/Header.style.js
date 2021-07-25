@@ -19,3 +19,10 @@ export const NavLink = styled(Link)`
     color: rgb(152, 156, 165);
   }
 `;
+
+export const LogOut = styled.a`
+  text-decoration: none;
+  color: rgb(176, 181, 191);
+  font-size: 1rem;
+  cursor: pointer;
+`;
