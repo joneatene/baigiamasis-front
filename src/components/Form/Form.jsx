@@ -44,19 +44,24 @@ const Form = ({ type }) => {
   //register and login form validation
   const validation = (e) => {
     e.preventDefault();
-    const email = e.target.elements.email.value.trim();
+    const email = e.target.elements.email.value.trim().toLowerCase();
     const password = e.target.elements.password.value.trim();
-    let fullname = e.target.elements.fullname.value.trim();
-    fullname = fullname.split(" ");
-    fullname = fullname
-      .map((word) => {
-        return word[0].toUpperCase() + word.substring(1).toLowerCase();
-      })
-      .join(" ");
+    let fullname;
+    if (type === "register") {
+      fullname = e.target.elements.fullname.value
+        .trim()
+        .toLowerCase()
+        .split(" ");
+      fullname = fullname
+        .map((word) => {
+          return word[0].toUpperCase() + word.substring(1);
+        })
+        .join(" ");
+    }
 
     if (email && password) {
       const schema = Yup.object().shape({
-        email: Yup.string().email().toLowerCase().max(255).min(5).required(),
+        email: Yup.string().email().max(255).min(5).required(),
         password: Yup.string().max(255).min(8).required(),
       });
 
