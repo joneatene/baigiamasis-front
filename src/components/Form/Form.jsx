@@ -8,6 +8,7 @@ import Notification from "../Notification/Notification";
 
 const Form = ({ type }) => {
   const [notification, setNotification] = useState();
+
   //for registering user
   const fetchRegister = (fullname, email, password) => {
     axios
@@ -34,12 +35,21 @@ const Form = ({ type }) => {
       })
       .then((res) => {
         if (res.data.status) {
+          localStorage.setItem("token", res.data.token);
           setNotification({ type: "success", text: res.data.status });
         }
       })
-      .catch((err) =>
-        setNotification({ type: "danger", text: err.response.data.error })
-      );
+      .catch((err) => {
+        console.log(err);
+        if (err.response.data.error) {
+          setNotification({ type: "danger", text: err.response.data.error });
+        } else {
+          setNotification({
+            type: "danger",
+            text: "Sorry, something went wrong :( Please try again later",
+          });
+        }
+      });
   };
   //register and login form validation
   const validation = (e) => {

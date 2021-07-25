@@ -8,11 +8,12 @@ const ProfilePage = () => {
   const [user, setUser] = useState();
   const userContext = useContext(UserContext);
 
-  useEffect(() => setUser(userContext), [userContext]);
+  useEffect(() => setUser(userContext.user), [userContext]);
   if (user) {
     return (
       <div className="wrapper">
-        <S.InfoBlock>
+        <h1>{user}</h1>
+        {/* <S.InfoBlock>
           <S.Photo src={user.photo} />
           <div>
             <S.Name>{user.fullname}</S.Name>
@@ -30,7 +31,7 @@ const ProfilePage = () => {
                 key={post.id}
               />
             ))}
-        </section>
+        </section> */}
       </div>
     );
   }

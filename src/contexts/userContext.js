@@ -1,32 +1,25 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
+import axios from "axios";
 
 export const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState();
+  const token = localStorage.getItem("token");
 
-  useState(() => {
-    setUser({
-      fullname: "Jone Kalmaite",
-      photo:
-        "https://images.pexels.com/photos/2552130/pexels-photo-2552130.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      about: "Hi, I'm a Front-End student at CodeAcademy",
-      posts: [
-        {
-          id: 1,
-          post: "Hello it is my first post",
-          timestamp: "2021-05-06 20.10",
-        },
-        {
-          id: 2,
-          post: "Hello it is my second post",
-          timestamp: "2021-05-06 20.10",
-        },
-      ],
-    });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("https://baigiamasis-back-hvu2q.ondigitalocean.app/auth/userinfo", {
+  //       headers: {
+  //         authorization: `Beared ${token}`,
+  //       },
+  //     })
+  //     .then((res) => console.log(res));
+  // }, [token]);
 
-  return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
+  return (
+    <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>
+  );
 };
 
 export default UserProvider;
