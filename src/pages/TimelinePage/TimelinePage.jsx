@@ -38,9 +38,7 @@ const TimelinePage = () => {
               name="content"
               minLength="2"
               maxLength="255"
-              placeholder={`What's on your mind ${
-                user.fullname.split(" ")[0]
-              }?`}
+              placeholder={`What's on your mind?`}
               required
             />
             <Button type="submit" color="primary">
