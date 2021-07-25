@@ -6,5 +6,5 @@ export const NotificationBlock = styled.div`
   background: ${(props) =>
     props.type === "success" ? "rgb(173,210,174)" : "rgb(188,56,33)"};
   color: rgb(250, 250, 250);
-  margin-bottom: 1rem;
+  margin: 1rem 0;
 `;

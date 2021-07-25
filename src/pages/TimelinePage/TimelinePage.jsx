@@ -30,16 +30,21 @@ const TimelinePage = () => {
 
       schema.isValid({ content }).then((data) => {
         if (data) {
-          fetch("http://localhost:8080/content/postcontent", {
-            method: "POST",
-            headers: {
-              authorization: `Beared ${token}`,
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ content, user_id }),
-          })
+          fetch(
+            "https://baigiamasis-back-hvu2q.ondigitalocean.app/content/postcontent",
+            {
+              method: "POST",
+              headers: {
+                authorization: `Beared ${token}`,
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ content, user_id }),
+            }
+          )
             .then((res) => res.json())
-            .then((data) => console.log(data));
+            .then((data) =>
+              setNotification({ type: "success", text: data.status })
+            );
         }
       });
     } else {
@@ -50,11 +55,6 @@ const TimelinePage = () => {
   return (
     <div className="wrapper">
       <S.UserForm>
-        {notification && (
-          <Notification type={notification.type}>
-            {notification.text}
-          </Notification>
-        )}
         <S.InfoBlock>
           <S.Name>Jone Atene Kalmaite</S.Name>
         </S.InfoBlock>
@@ -69,6 +69,11 @@ const TimelinePage = () => {
           <Button type="submit" color="primary">
             Post
           </Button>
+          {notification && (
+            <Notification type={notification.type}>
+              {notification.text}
+            </Notification>
+          )}
         </form>
       </S.UserForm>
     </div>
