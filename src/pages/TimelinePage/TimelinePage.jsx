@@ -7,9 +7,10 @@ import Button from "../../components/Button/Button";
 import Notification from "../../components/Notification/Notification";
 
 const TimelinePage = () => {
+  const token = localStorage.getItem("token");
   //check if logged in
   const history = useHistory();
-  if (!localStorage.getItem("token")) {
+  if (!token) {
     history.push("/login");
   }
 
@@ -20,15 +21,25 @@ const TimelinePage = () => {
   const validation = (e) => {
     e.preventDefault();
     const content = e.target.elements.content.value.trim();
+    const user_id = 8;
+
     if (content) {
       const schema = Yup.object().shape({
         content: Yup.string().max(255).min(2).required(),
       });
+
       schema.isValid({ content }).then((data) => {
         if (data) {
-          //fetch
-        } else {
-          setNotification({ type: "danger", text: "Bad post :(" });
+          fetch("http://localhost:8080/content/postcontent", {
+            method: "POST",
+            headers: {
+              authorization: `Beared ${token}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ content, user_id }),
+          })
+            .then((res) => res.json())
+            .then((data) => console.log(data));
         }
       });
     } else {
