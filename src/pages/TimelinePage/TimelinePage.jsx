@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 //import { UserContext } from "../../contexts/userContext";
 import * as Yup from "yup";
 import * as S from "./Timeline.style";
 import Button from "../../components/Button/Button";
 import Notification from "../../components/Notification/Notification";
+import Card from "../../components/Card/Card";
 
 const TimelinePage = () => {
   const token = localStorage.getItem("token");
+  const [content, setContent] = useState();
+  console.log(content);
   //check if logged in
   const history = useHistory();
   if (!token) {
@@ -42,15 +45,27 @@ const TimelinePage = () => {
             }
           )
             .then((res) => res.json())
-            .then((data) =>
-              setNotification({ type: "success", text: data.status })
-            );
+            .then((data) => {
+              setNotification({ type: "success", text: data.status });
+              setTimeout(() => document.location.reload(), 2000);
+            });
         }
       });
     } else {
       alert("Please write something");
     }
   };
+
+  //get content
+  useEffect(() => {
+    fetch("https://baigiamasis-back-hvu2q.ondigitalocean.app/content/content", {
+      headers: {
+        authorization: `Beared ${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => setContent(data));
+  }, [token]);
 
   return (
     <div className="wrapper">
@@ -76,6 +91,14 @@ const TimelinePage = () => {
           )}
         </form>
       </S.UserForm>
+      {content &&
+        content.map((post) => (
+          <Card
+            fullname={post.fullname}
+            timestamp={post.timestamp}
+            content={post.content}
+          />
+        ))}
     </div>
   );
 };

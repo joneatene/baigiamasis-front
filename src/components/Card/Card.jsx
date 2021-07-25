@@ -2,13 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import * as S from "./Card.style";
 
-const Card = ({ fullname, photo, post, timestamp }) => (
+const Card = ({ fullname, photo, content, timestamp }) => (
   <S.CardBlock>
     <S.InfoBlock>
-      <S.Username>Jone Atene Kalmaite</S.Username>
-      <S.Timestamp>2021-06-05 12.45</S.Timestamp>
+      <S.Username>{fullname}</S.Username>
+      <S.Timestamp>
+        {`${timestamp.slice(0, 10)} ${timestamp.slice(11, 16)}`}
+      </S.Timestamp>
     </S.InfoBlock>
-    {post}
+    {content}
   </S.CardBlock>
 );
 
