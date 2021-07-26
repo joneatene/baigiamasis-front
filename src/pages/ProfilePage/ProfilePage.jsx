@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { UserContext } from "../../contexts/userContext";
 import * as S from "./Profile.style";
 import Card from "../../components/Card/Card";
+import LoadingDots from "../Loading/Loading";
 
 const ProfilePage = () => {
   const history = useHistory();
@@ -10,7 +11,7 @@ const ProfilePage = () => {
     history.push("/login");
   }
   const userContext = useContext(UserContext);
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState();
 
   useEffect(() => {
     if (userContext.user) {
@@ -25,12 +26,16 @@ const ProfilePage = () => {
       )
         .then((res) => res.json())
         .then((data) => {
-          setPosts(data);
+          if (data.status) {
+            setPosts();
+          } else {
+            setPosts(data);
+          }
         });
     }
   }, [userContext]);
 
-  if (userContext.user && posts) {
+  if (userContext.user) {
     return (
       <div className="wrapper">
         <S.InfoBlock>
@@ -38,10 +43,12 @@ const ProfilePage = () => {
         </S.InfoBlock>
         <S.Title>These are your posts</S.Title>
         {posts &&
-          posts.length !== 0 &&
+          posts.length >= 1 &&
           posts.map((post) => (
             <Card
               key={post.post_id}
+              id={post.post_id}
+              deleteFunction={true}
               fullname={post.fullname}
               timestamp={
                 post.timestamp.slice(0, 10) + " " + post.timestamp.slice(11, 16)
@@ -49,11 +56,12 @@ const ProfilePage = () => {
               content={post.content}
             />
           ))}
+        {(!posts || posts.length === 0) && <S.NoPosts>No posts.</S.NoPosts>}
       </div>
     );
   }
 
-  return <h1>Loading...</h1>;
+  return <LoadingDots />;
 };
 
 export default ProfilePage;

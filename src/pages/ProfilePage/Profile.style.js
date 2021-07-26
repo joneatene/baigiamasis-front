@@ -25,3 +25,7 @@ export const Name = styled.h3`
 export const Title = styled.p`
   text-align: center;
 `;
+
+export const NoPosts = styled.p`
+  text-align: center;
+`;

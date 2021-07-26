@@ -25,4 +25,8 @@ export const LogOut = styled.a`
   color: rgb(176, 181, 191);
   font-size: 1rem;
   cursor: pointer;
+
+  @media only screen and (max-width: 900px) {
+    font-size: 0.8rem;
+  }
 `;

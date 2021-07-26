@@ -7,6 +7,10 @@ export const UserForm = styled.section`
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 10px;
   padding: 1rem;
+
+  @media only screen and (max-width: 900px) {
+    width: 100%;
+  }
 `;
 
 export const InfoBlock = styled.div`

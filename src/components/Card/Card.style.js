@@ -27,11 +27,14 @@ export const Timestamp = styled.p`
   margin: 0;
 `;
 
-export const DeleteButton = styled.span`
+export const DeleteButton = styled.button`
   cursor: pointer;
   font-weight: 200;
   font-size: 1.2em;
   position: absolute;
+  outline: none;
+  background: transparent;
+  border: none;
   right: 7px;
   top: 2px;
 `;

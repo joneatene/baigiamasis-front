@@ -6,6 +6,7 @@ import * as S from "./Timeline.style";
 import Button from "../../components/Button/Button";
 import Notification from "../../components/Notification/Notification";
 import Card from "../../components/Card/Card";
+import LoadingDots from "../Loading/Loading";
 
 const TimelinePage = () => {
   const token = localStorage.getItem("token");
@@ -99,13 +100,15 @@ const TimelinePage = () => {
           </form>
         </S.UserForm>
         {newPost &&
-          newPost.map((post) => (
-            <Card
-              fullname={post.fullname}
-              timestamp={post.timestamp}
-              content={post.content}
-            />
-          ))}
+          newPost
+            .reverse()
+            .map((post) => (
+              <Card
+                fullname={post.fullname}
+                timestamp={post.timestamp}
+                content={post.content}
+              />
+            ))}
         {content &&
           content.map((post) => (
             <Card
@@ -113,7 +116,7 @@ const TimelinePage = () => {
               deleteFunction={
                 post.user_id === userContext.user.id ? true : false
               }
-              id={post.id}
+              id={post.post_id}
               fullname={post.fullname}
               timestamp={
                 post.timestamp.slice(0, 10) + " " + post.timestamp.slice(11, 16)
@@ -125,7 +128,7 @@ const TimelinePage = () => {
     );
   }
 
-  return <h1>Loading...</h1>;
+  return <LoadingDots />;
 };
 
 export default TimelinePage;
