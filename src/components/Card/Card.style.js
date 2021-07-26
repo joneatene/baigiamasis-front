@@ -5,6 +5,7 @@ export const CardBlock = styled.div`
   padding: 1rem;
   margin-bottom: 2rem;
   transition: ease-in-out 0.2s;
+  position: relative;
   &:hover {
     background: rgb(247, 245, 237);
   }
@@ -24,4 +25,13 @@ export const Timestamp = styled.p`
   font-style: italic;
   font-size: 0.8rem;
   margin: 0;
+`;
+
+export const DeleteButton = styled.span`
+  cursor: pointer;
+  font-weight: 200;
+  font-size: 1.2em;
+  position: absolute;
+  right: 7px;
+  top: 2px;
 `;

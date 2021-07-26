@@ -14,7 +14,7 @@ const Form = ({ type }) => {
   //for registering user
   const fetchRegister = (fullname, email, password) => {
     axios
-      .post("https://baigiamasis-back-hvu2q.ondigitalocean.app/auth/register", {
+      .post(`https://baigiamasis-back-63jao.ondigitalocean.app/auth/register`, {
         fullname,
         email,
         password,
@@ -24,14 +24,22 @@ const Form = ({ type }) => {
           setNotification({ type: "success", text: res.data.status });
         }
       })
-      .catch((err) =>
-        setNotification({ type: "danger", text: err.response.data.error })
-      );
+      .catch((err) => {
+        console.log(err);
+        if (err.response.data.error) {
+          setNotification({ type: "danger", text: err.response.data.error });
+        } else {
+          setNotification({
+            type: "danger",
+            text: "Sorry, something went wrong :( Please try again later",
+          });
+        }
+      });
   };
   //for logging in user
   const fetchLogin = (email, password) => {
     axios
-      .post("https://baigiamasis-back-hvu2q.ondigitalocean.app/auth/login", {
+      .post(`https://baigiamasis-back-63jao.ondigitalocean.app/auth/login`, {
         email,
         password,
       })

@@ -1,10 +1,19 @@
 import React, { useEffect, useState } from "react";
 import * as S from "./Header.style";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 const Header = () => {
   const history = useHistory();
-  const [changed, setChanged] = useState();
+  const [changed, setChanged] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === "/timeline" || location.pathname === "/profile") {
+      setChanged(true);
+    } else if (location.pathname === "/" || location.pathname === "/login") {
+      setChanged(false);
+    }
+  }, [location.pathname]);
 
   useEffect(() => {
     history.listen((location) => {
@@ -14,7 +23,7 @@ const Header = () => {
       ) {
         setChanged(true);
       } else if (location.pathname === "/" || location.pathname === "/login") {
-        setChanged();
+        setChanged(false);
       }
     });
   }, [history]);
@@ -24,7 +33,7 @@ const Header = () => {
     history.push("/login");
     setChanged();
   };
-  if (!changed) {
+  if (changed === false) {
     return (
       <header className="header">
         <S.NavBlock>

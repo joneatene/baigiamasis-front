@@ -9,3 +9,9 @@ body {
   width: 924px;
   margin: 0 auto;
 }
+
+@media only screen and (max-width: 900px) {
+  .wrapper {
+    width: 100%;
+  }
+}

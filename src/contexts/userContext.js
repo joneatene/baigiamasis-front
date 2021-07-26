@@ -7,15 +7,21 @@ const UserProvider = ({ children }) => {
   const [user, setUser] = useState();
   const token = localStorage.getItem("token");
 
-  // useEffect(() => {
-  //   axios
-  //     .get("https://baigiamasis-back-hvu2q.ondigitalocean.app/auth/userinfo", {
-  //       headers: {
-  //         authorization: `Beared ${token}`,
-  //       },
-  //     })
-  //     .then((res) => console.log(res));
-  // }, [token]);
+  useEffect(() => {
+    if (token) {
+      axios
+        .get(
+          "https://baigiamasis-back-63jao.ondigitalocean.app/content/userinfo",
+          {
+            headers: {
+              authorization: `Beared ${token}`,
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((res) => setUser(res.data));
+    }
+  }, [token]);
 
   return (
     <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>

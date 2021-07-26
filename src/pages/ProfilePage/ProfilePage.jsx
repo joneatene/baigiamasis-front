@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../../contexts/userContext";
 import * as S from "./Profile.style";
-
 import Card from "../../components/Card/Card";
 
 const ProfilePage = () => {
@@ -10,33 +9,46 @@ const ProfilePage = () => {
   if (!localStorage.getItem("token")) {
     history.push("/login");
   }
-  const [user, setUser] = useState();
   const userContext = useContext(UserContext);
+  const [posts, setPosts] = useState([]);
 
-  useEffect(() => setUser(userContext.user), [userContext]);
-  if (user) {
+  useEffect(() => {
+    if (userContext.user) {
+      fetch(
+        `https://baigiamasis-back-63jao.ondigitalocean.app/content/content/${userContext.user.id}`,
+        {
+          headers: {
+            authorization: `Beared ${localStorage.getItem("token")}`,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          setPosts(data);
+        });
+    }
+  }, [userContext]);
+
+  if (userContext.user && posts) {
     return (
       <div className="wrapper">
-        <h1>{user}</h1>
-        {/* <S.InfoBlock>
-          <S.Photo src={user.photo} />
-          <div>
-            <S.Name>{user.fullname}</S.Name>
-            <p>{user.about}</p>
-          </div>
+        <S.InfoBlock>
+          <S.Name>{userContext.user.fullname}</S.Name>
         </S.InfoBlock>
-        <section>
-          {user.posts &&
-            user.posts.map((post) => (
-              <Card
-                fullname={user.fullname}
-                photo={user.photo}
-                post={post.post}
-                timestamp={post.timestamp}
-                key={post.id}
-              />
-            ))}
-        </section> */}
+        <S.Title>These are your posts</S.Title>
+        {posts &&
+          posts.length !== 0 &&
+          posts.map((post) => (
+            <Card
+              key={post.post_id}
+              fullname={post.fullname}
+              timestamp={
+                post.timestamp.slice(0, 10) + " " + post.timestamp.slice(11, 16)
+              }
+              content={post.content}
+            />
+          ))}
       </div>
     );
   }
