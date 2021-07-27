@@ -1,4 +1,14 @@
-# Getting Started with Create React App
+# JONITTER PROJECT :speech_balloon:
+
+Hi!
+
+This is my simple twitter-like project - "jonitter" :smile:
+
+For this project I used React and Node.js (for server, which you can find here: https://github.com/joneatene/baigiamasis-back).
+
+Hope you like it! :smiling_face_with_three_hearts:
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
