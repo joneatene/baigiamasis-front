@@ -20,8 +20,6 @@ const TimelinePage = () => {
     history.push("/login");
   }
 
-  useEffect(() => window.location.reload(), []);
-
   //useState for notification
   const [notification, setNotification] = useState();
 

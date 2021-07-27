@@ -6,11 +6,8 @@ export const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState();
-  const [change, setChange] = useState();
+  const [loggedIn, setLoggedIn] = useState();
   const token = localStorage.getItem("token");
-  const history = useHistory();
-
-  history.listen((loc) => setChange(loc));
 
   useEffect(() => {
     if (token) {
@@ -26,10 +23,10 @@ const UserProvider = ({ children }) => {
         )
         .then((res) => setUser(res.data));
     }
-  }, [token, change]);
+  }, [token, loggedIn]);
 
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ user, setUser, setLoggedIn }}>
       {children}
     </UserContext.Provider>
   );

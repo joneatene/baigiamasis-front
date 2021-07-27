@@ -49,7 +49,7 @@ const Form = ({ type }) => {
         if (res.data.status) {
           localStorage.setItem("token", res.data.token);
           setNotification({ type: "success", text: res.data.status });
-          userContext.setUser();
+          userContext.setLoggedIn(true);
           setTimeout(() => {
             history.push("/timeline");
           }, 2000);
