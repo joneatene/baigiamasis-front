@@ -46,13 +46,17 @@ const Form = ({ type }) => {
         password,
       })
       .then((res) => {
-        if (res.data.status) {
+        if (res.data.status.includes("User logged in")) {
+          console.log(res.data);
           localStorage.setItem("token", res.data.token);
           setNotification({ type: "success", text: res.data.status });
           userContext.setLoggedIn(true);
           setTimeout(() => {
             history.push("/timeline");
           }, 2000);
+        } else {
+          console.log(res.data);
+          setNotification({ type: "danger", text: res.data.error });
         }
       })
       .catch((err) => {

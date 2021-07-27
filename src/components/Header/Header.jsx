@@ -33,7 +33,7 @@ const Header = () => {
   const LogOut = () => {
     localStorage.removeItem("token");
     history.push("/login");
-    userContext.setUser();
+    userContext.setLoggedIn(false);
     setChanged();
   };
   if (changed === false) {
