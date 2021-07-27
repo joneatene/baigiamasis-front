@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 
 const BounceAnimation = keyframes`
@@ -22,15 +22,22 @@ const Dot = styled.div`
   animation-delay: ${(props) => props.delay};
 `;
 
-class LoadingDots extends Component {
-  render() {
-    return (
+const LoadingDots = () => {
+  const [notLoading, setNotLoading] = useState();
+
+  setTimeout(() => setNotLoading(true), 4000);
+  return (
+    <>
+      <p style={{ textAlign: "center" }}>
+        {notLoading && "Something went wrong :( Try refreshing the page."}
+      </p>
       <DotWrapper>
         <Dot delay="0s" />
         <Dot delay=".1s" />
         <Dot delay=".2s" />
       </DotWrapper>
-    );
-  }
-}
+    </>
+  );
+};
+
 export default LoadingDots;
