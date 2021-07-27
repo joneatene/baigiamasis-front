@@ -20,6 +20,8 @@ const TimelinePage = () => {
     history.push("/login");
   }
 
+  useEffect(() => window.location.reload(), []);
+
   //useState for notification
   const [notification, setNotification] = useState();
 
@@ -79,7 +81,7 @@ const TimelinePage = () => {
       <div className="wrapper">
         <S.UserForm>
           <S.InfoBlock>
-            <S.Name>{userContext.user.fullname}</S.Name>
+            {userContext.user && <S.Name>{userContext.user.fullname}</S.Name>}
           </S.InfoBlock>
           <form onSubmit={validation}>
             <S.Input

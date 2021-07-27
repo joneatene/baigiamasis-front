@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import * as S from "./Header.style";
 import { useHistory, useLocation } from "react-router-dom";
+import { UserContext } from "../../contexts/userContext";
 
 const Header = () => {
   const history = useHistory();
+  const userContext = useContext(UserContext);
   const [changed, setChanged] = useState(false);
   const location = useLocation();
 
@@ -31,6 +33,7 @@ const Header = () => {
   const LogOut = () => {
     localStorage.removeItem("token");
     history.push("/login");
+    userContext.setUser();
     setChanged();
   };
   if (changed === false) {

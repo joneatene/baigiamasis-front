@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import * as S from "./Card.style";
 
 const Card = ({ fullname, content, timestamp, id, deleteFunction }) => {
-  console.log(id);
+  const [showCard, setShowCard] = useState(true);
+
   const deleteCard = () => {
     if (id) {
       const post_id = id;
@@ -19,11 +20,15 @@ const Card = ({ fullname, content, timestamp, id, deleteFunction }) => {
         }
       )
         .then((res) => res.json())
-        .then((data) => console.log(data));
+        .then((data) => setShowCard(false));
     } else {
       console.log("hello no id");
     }
   };
+
+  if (!showCard) {
+    return <p>Card deleted.</p>;
+  }
   return (
     <S.CardBlock>
       <S.InfoBlock>

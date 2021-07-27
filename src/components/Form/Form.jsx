@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import * as Yup from "yup";
@@ -6,10 +6,12 @@ import { useHistory } from "react-router-dom";
 import * as S from "./Form.style";
 import Button from "../Button/Button";
 import Notification from "../Notification/Notification";
+import { UserContext } from "../../contexts/userContext";
 
 const Form = ({ type }) => {
   const [notification, setNotification] = useState();
   const history = useHistory();
+  const userContext = useContext(UserContext);
 
   //for registering user
   const fetchRegister = (fullname, email, password) => {
@@ -47,6 +49,7 @@ const Form = ({ type }) => {
         if (res.data.status) {
           localStorage.setItem("token", res.data.token);
           setNotification({ type: "success", text: res.data.status });
+          userContext.setUser();
           setTimeout(() => {
             history.push("/timeline");
           }, 2000);
